@@ -90,6 +90,9 @@ describe("UsersPage", () => {
     usersStore.asyncSetUsers();
     await new Promise((r) => setTimeout(r, 10));
 
+    expect(usersStore.asyncSetUsers).toHaveBeenCalled();
+    expect(wrapper.exists()).toBe(true);
+
     // Cleanup
     resolveLoad();
     await pendingPromise;
@@ -112,5 +115,7 @@ describe("UsersPage", () => {
     resolveLoad();
     await pendingPromise;
     await new Promise((r) => setTimeout(r, 20));
+
+    expect(wrapper.text()).not.toContain("Memuat daftar pengguna...");
   });
 });

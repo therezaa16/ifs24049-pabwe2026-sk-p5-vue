@@ -1,11 +1,11 @@
 <template>
-  <div
+  <dialog
+    open
     v-if="show && aucation"
     data-testid="bid-modal"
-    role="dialog"
     aria-modal="true"
     aria-labelledby="bid-modal-heading"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50"
+    class="m-0 h-full w-full max-w-none max-h-none border-0 fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50"
   >
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
@@ -82,7 +82,7 @@
         </div>
       </form>
     </div>
-  </div>
+  </dialog>
 </template>
 
 <script setup>
@@ -142,7 +142,7 @@ watch(
 );
 
 function handleSave() {
-  if (!(Number(bid.value) >= minBid.value)) {
+  if (Number(bid.value) < minBid.value) {
     showErrorDialog(`Penawaran minimal ${formatRupiah(minBid.value)}`);
     return;
   }

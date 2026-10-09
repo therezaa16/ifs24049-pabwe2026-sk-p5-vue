@@ -5,6 +5,7 @@ import { showErrorDialog, showSuccessDialog } from "../../../helpers/toolsHelper
 
 export const useAucationsStore = defineStore("aucations", {
   state: () => ({
+    lastError: "",
     aucations: [],
     aucation: null,
     isAucation: false,
@@ -79,6 +80,7 @@ export const useAucationsStore = defineStore("aucations", {
       try {
         this.setAucations(await aucationApi.getAucations(params));
       } catch (error) {
+        this.lastError = error.message;
         this.setAucations([]);
       }
     },
@@ -86,6 +88,7 @@ export const useAucationsStore = defineStore("aucations", {
       try {
         this.setAucation(await aucationApi.getAucationById(aucationId));
       } catch (error) {
+        this.lastError = error.message;
         this.setAucation(null);
       } finally {
         this.setIsAucation(true);

@@ -15,7 +15,7 @@ const aucations = [
     id: 1,
     user_id: 1,
     title: "Keyboard Gaming",
-    cover: "http://img/k.jpg",
+    cover: "https://img/k.jpg",
     description: "Barang mulus",
     start_bid: 200000,
     closed_at: "2099-01-01 10:00:00",
@@ -91,7 +91,7 @@ describe("HomePage", () => {
     expect(wrapper.findAll('[data-testid^="aucation-card-"]')).toHaveLength(4);
 
     const card1 = wrapper.find('[data-testid="aucation-card-1"]');
-    expect(card1.find("img").attributes("src")).toBe("http://img/k.jpg");
+    expect(card1.find("img").attributes("src")).toBe("https://img/k.jpg");
     expect(card1.text()).toContain("Berlangsung");
     expect(norm(card1.text())).toContain("Rp 200.000");
     expect(wrapper.find('[data-testid="highest-1"]').text()).toBe("Belum ada");

@@ -69,7 +69,6 @@ describe("ProfilePage", () => {
 
     const nameInput = wrapper.find('[data-testid="profile-name-input"]');
     const emailInput = wrapper.find('[data-testid="profile-email-input"]');
-    const profileForm = nameInput.element.closest("form");
 
     // Empty name
     await nameInput.setValue("   ");

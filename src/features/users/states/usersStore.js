@@ -4,6 +4,7 @@ import { showErrorDialog, showSuccessDialog } from "../../../helpers/toolsHelper
 
 export const useUsersStore = defineStore("users", {
   state: () => ({
+    lastError: "",
     users: [],
     user: null,
     profile: null,
@@ -39,6 +40,7 @@ export const useUsersStore = defineStore("users", {
         const users = await userApi.getUsers();
         this.setUsers(users);
       } catch (error) {
+        this.lastError = error.message;
         this.setUsers([]);
       }
     },
@@ -47,6 +49,7 @@ export const useUsersStore = defineStore("users", {
         const user = await userApi.getUserById(userId);
         this.setUser(user);
       } catch (error) {
+        this.lastError = error.message;
         this.setUser(null);
       }
     },
@@ -55,6 +58,7 @@ export const useUsersStore = defineStore("users", {
         const profile = await userApi.getProfile();
         this.setProfile(profile);
       } catch (error) {
+        this.lastError = error.message;
         this.setProfile(null);
       } finally {
         this.setIsProfile(true);

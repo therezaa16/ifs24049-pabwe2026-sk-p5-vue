@@ -1,8 +1,8 @@
 <template>
-  <div v-if="!profile || !aucation" class="flex flex-col items-center justify-center py-20" role="status">
+  <output v-if="!profile || !aucation" class="flex flex-col items-center justify-center py-20">
     <div class="w-8 h-8 border-4 border-teal-700 border-t-transparent rounded-full animate-spin" />
     <span class="sr-only">Memuat detail lelang...</span>
-  </div>
+  </output>
 
   <div v-else class="space-y-6 max-w-4xl mx-auto">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">

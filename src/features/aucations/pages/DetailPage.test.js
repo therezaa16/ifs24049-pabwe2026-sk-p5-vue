@@ -22,7 +22,7 @@ const base = {
   id: 5,
   user_id: 2,
   title: "Oculus Quest 2",
-  cover: "http://img/c.jpg",
+  cover: "https://img/c.jpg",
   description: "Second mulus",
   start_bid: 5000000,
   closed_at: "2099-01-01 10:00:00",
@@ -69,7 +69,7 @@ describe("DetailPage", () => {
     );
 
     expect(wrapper.find("h1").text()).toBe("Oculus Quest 2");
-    expect(wrapper.find("img").attributes("src")).toBe("http://img/c.jpg");
+    expect(wrapper.find("img").attributes("src")).toBe("https://img/c.jpg");
     expect(wrapper.text()).toContain("Ubaid");
     expect(wrapper.find('[data-testid="detail-status"]').text()).toBe("Berlangsung");
     expect(wrapper.find('[data-testid="detail-time-left"]').text()).toContain("lagi");

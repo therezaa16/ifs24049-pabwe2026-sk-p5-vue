@@ -1,11 +1,11 @@
 <template>
-  <div
+  <dialog
+    open
     v-if="show"
     data-testid="change-aucation-modal"
-    role="dialog"
     aria-modal="true"
     aria-labelledby="change-aucation-title-heading"
-    class="fixed inset-0 z-50 flex flex-col bg-white overflow-y-auto"
+    class="m-0 h-full w-full max-w-none max-h-none border-0 fixed inset-0 z-50 flex flex-col bg-white overflow-y-auto"
   >
     <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50 shrink-0">
       <div class="flex items-center gap-2.5">
@@ -115,7 +115,7 @@
         </button>
       </div>
     </form>
-  </div>
+  </dialog>
 </template>
 
 <script setup>
@@ -208,7 +208,7 @@ function handleSave() {
     return;
   }
 
-  if (!(Number(startBid.value) > 0)) {
+  if (Number(startBid.value) <= 0) {
     showErrorDialog("Harga awal harus lebih besar dari 0");
     return;
   }

@@ -86,7 +86,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useUsersStore } from "../states/usersStore";
 import { formatDate } from "../../../helpers/toolsHelper";
 import { Users, Search, Mail, Calendar, Loader2 } from "lucide-vue-next";

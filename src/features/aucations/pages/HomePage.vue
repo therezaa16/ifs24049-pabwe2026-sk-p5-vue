@@ -30,7 +30,7 @@
     </div>
 
     <div class="bg-white rounded-2xl border border-slate-200 shadow-xs p-4 sm:p-5 space-y-4">
-      <div role="group" aria-label="Filter lelang" class="inline-flex flex-wrap gap-1 rounded-xl bg-slate-100 p-1 text-xs font-semibold text-slate-700">
+      <fieldset aria-label="Filter lelang" class="inline-flex flex-wrap gap-1 rounded-xl bg-slate-100 p-1 text-xs font-semibold text-slate-700">
         <button
           v-for="item in tabs"
           :key="item.key"
@@ -43,7 +43,7 @@
         >
           {{ item.label }}
         </button>
-      </div>
+      </fieldset>
 
       <div class="relative max-w-md">
         <label for="search-aucation" class="sr-only">Cari lelang</label>
@@ -59,10 +59,10 @@
       </div>
     </div>
 
-    <div v-if="loadingAucations && filteredAucations.length === 0" class="py-16 text-center text-slate-600" role="status">
+    <output v-if="loadingAucations && filteredAucations.length === 0" class="py-16 text-center text-slate-600">
       <Loader2 :size="36" class="mx-auto text-teal-700 animate-spin mb-2" aria-hidden="true" />
       <p class="font-medium">Memuat daftar lelang...</p>
-    </div>
+    </output>
     <div v-else-if="filteredAucations.length === 0" class="py-16 text-center text-slate-600">
       <Gavel :size="40" class="mx-auto text-slate-500 mb-2" aria-hidden="true" />
       <p class="font-medium">Belum ada lelang yang cocok.</p>

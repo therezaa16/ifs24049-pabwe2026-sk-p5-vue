@@ -5,6 +5,7 @@ import { showErrorDialog, showSuccessDialog } from "../../../helpers/toolsHelper
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
+    lastError: "",
     isAuthLogin: false,
     isAuthRegister: false,
     isAuthLogout: false,
