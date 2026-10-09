@@ -69,6 +69,7 @@ describe("AucationLayout", () => {
 
   it("should stay on page when isProfile is triggered and profile exists", async () => {
     vi.spyOn(apiHelper, "getAccessToken").mockReturnValue("valid-token");
+    vi.stubGlobal("fetch", () => new Promise(() => {}));
 
     const { wrapper, usersStore } = renderWithProviders(AucationLayout, {
       preloadedState: {
@@ -81,6 +82,7 @@ describe("AucationLayout", () => {
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.text()).toContain("Logged User");
+    vi.unstubAllGlobals();
   });
 
   it("should redirect to login when isProfile is triggered and profile is null", async () => {

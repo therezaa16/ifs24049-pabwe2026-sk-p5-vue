@@ -9,6 +9,7 @@ import { createAppRouter } from "../../../router";
 import * as toolsHelper from "../../../helpers/toolsHelper";
 
 vi.mock("../components/MarkdownViewer.vue", () => ({
+  __esModule: true,
   default: {
     props: ["content"],
     template: '<div data-testid="markdown-viewer-stub">{{ content }}</div>',
@@ -63,6 +64,9 @@ describe("DetailPage", () => {
 
   it("should render aucation detail for a participant", async () => {
     const { wrapper } = await setup();
+    await vi.waitFor(() =>
+      expect(wrapper.find('[data-testid="markdown-viewer-stub"]').exists()).toBe(true)
+    );
 
     expect(wrapper.find("h1").text()).toBe("Oculus Quest 2");
     expect(wrapper.find("img").attributes("src")).toBe("http://img/c.jpg");

@@ -6,6 +6,9 @@ import * as toolsHelper from "../../../helpers/toolsHelper";
 const tick = () => new Promise((r) => setTimeout(r, 10));
 const id = (name) => `[data-testid="add-aucation-${name}-input"]`;
 
+const ready = (wrapper) =>
+  vi.waitFor(() => expect(wrapper.find(id("description")).exists()).toBe(true));
+
 async function fill(wrapper, parts = ["title", "description", "start-bid", "closed-at"]) {
   const values = {
     title: "  Keyboard RGB  ",
@@ -13,6 +16,7 @@ async function fill(wrapper, parts = ["title", "description", "start-bid", "clos
     "start-bid": "200000",
     "closed-at": "2026-12-31T23:59",
   };
+  await ready(wrapper);
   for (const p of parts) await wrapper.find(id(p)).setValue(values[p]);
 }
 

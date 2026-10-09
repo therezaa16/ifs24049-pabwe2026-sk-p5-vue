@@ -15,13 +15,15 @@ export default defineConfig(({ mode }) => {
     preview: {
       port: Number(env.APP_PORT) || 3000,
     },
-    build: {
-      sourcemap: true,
-    },
     define: {
       DELCOM_BASEURL: JSON.stringify(
         env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1"
       ),
+    },
+    build: {
+      target: "esnext",
+      sourcemap: true,
+      chunkSizeWarningLimit: 700,
     },
     test: {
       globals: true,

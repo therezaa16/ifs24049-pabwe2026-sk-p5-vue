@@ -14,6 +14,9 @@ const existing = {
   closed_at: "2024-10-05 22:00:00",
 };
 
+const ready = (wrapper) =>
+  vi.waitFor(() => expect(wrapper.find(field("description")).exists()).toBe(true));
+
 function setup(props, state = {}) {
   const { pinia, aucationsStore } = createMockPinia(state);
   const fetchSpy = vi.spyOn(aucationsStore, "asyncSetAucation").mockResolvedValue(undefined);
@@ -38,8 +41,9 @@ describe("ChangeModal", () => {
     expect(fetchSpy).not.toHaveBeenCalled();
   });
 
-  it("should fetch and fill the form from store when shown", () => {
+  it("should fetch and fill the form from store when shown", async () => {
     const { wrapper, fetchSpy } = setup({ show: true, aucationId: 7 }, { aucation: existing });
+    await ready(wrapper);
 
     expect(fetchSpy).toHaveBeenCalledWith(7);
     expect(wrapper.find(field("title")).element.value).toBe("Oculus Quest 2");
@@ -67,6 +71,7 @@ describe("ChangeModal", () => {
   it("should validate all required fields", async () => {
     const { wrapper } = setup({ show: true, aucationId: 7 }, { aucation: existing });
     const submit = () => wrapper.find("form").trigger("submit");
+    await ready(wrapper);
 
     await wrapper.find(field("title")).setValue(" ");
     await submit();
