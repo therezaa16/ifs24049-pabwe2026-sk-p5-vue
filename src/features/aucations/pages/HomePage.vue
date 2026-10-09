@@ -69,13 +69,23 @@
     </div>
     <ul v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
       <li
-        v-for="item in filteredAucations"
+        v-for="(item, index) in filteredAucations"
         :key="`aucation-${item.id}`"
         :data-testid="`aucation-card-${item.id}`"
         class="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden flex flex-col"
       >
         <div class="h-40 bg-slate-100 flex items-center justify-center overflow-hidden">
-          <img v-if="item.cover" :src="item.cover" :alt="item.title" class="w-full h-full object-cover" />
+          <img
+            v-if="item.cover"
+            :src="item.cover"
+            :alt="item.title"
+            width="400"
+            height="160"
+            decoding="async"
+            :loading="index < 3 ? 'eager' : 'lazy'"
+            :fetchpriority="index === 0 ? 'high' : 'auto'"
+            class="w-full h-full object-cover"
+          />
           <Gavel v-else :size="40" class="text-slate-500" aria-hidden="true" />
         </div>
 
