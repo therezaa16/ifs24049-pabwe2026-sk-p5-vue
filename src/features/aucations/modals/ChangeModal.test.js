@@ -3,6 +3,26 @@ import ChangeModal from "./ChangeModal.vue";
 import { renderWithProviders, createMockPinia } from "../../../test-utils";
 import * as toolsHelper from "../../../helpers/toolsHelper";
 
+vi.mock("../components/MarkdownEditor.vue", () => ({
+  __esModule: true,
+  default: {
+    props: ["modelValue", "textareaTestId"],
+    emits: ["update:modelValue"],
+    template:
+      '<textarea :data-testid="textareaTestId" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+}));
+
+vi.mock("../components/MarkdownEditor.vue", () => ({
+  __esModule: true,
+  default: {
+    props: ["modelValue", "textareaTestId"],
+    emits: ["update:modelValue"],
+    template:
+      '<textarea :data-testid="textareaTestId" :value="modelValue" @input="$emit(\'update:modelValue\', $event.target.value)" />',
+  },
+}));
+
 const tick = () => new Promise((r) => setTimeout(r, 10));
 const field = (name) => `[data-testid="change-aucation-${name}-input"]`;
 

@@ -1,52 +1,61 @@
 import { createRouter, createWebHistory } from "vue-router";
+import AuthLayout from "./features/auth/layouts/AuthLayout.vue";
+import LoginPage from "./features/auth/pages/LoginPage.vue";
+import RegisterPage from "./features/auth/pages/RegisterPage.vue";
+import AucationLayout from "./features/aucations/layouts/AucationLayout.vue";
+import HomePage from "./features/aucations/pages/HomePage.vue";
+import DetailPage from "./features/aucations/pages/DetailPage.vue";
+import UsersPage from "./features/users/pages/UsersPage.vue";
+import ProfilePage from "./features/users/pages/ProfilePage.vue";
+import NotFoundPage from "./features/common/pages/NotFoundPage.vue";
 
 export const routes = [
   {
     path: "/auth",
-    component: () => import("./features/auth/layouts/AuthLayout.vue"),
+    component: AuthLayout,
     children: [
       {
         path: "login",
         name: "login",
-        component: () => import("./features/auth/pages/LoginPage.vue"),
+        component: LoginPage,
       },
       {
         path: "register",
         name: "register",
-        component: () => import("./features/auth/pages/RegisterPage.vue"),
+        component: RegisterPage,
       },
     ],
   },
   {
     path: "/",
-    component: () => import("./features/aucations/layouts/AucationLayout.vue"),
+    component: AucationLayout,
     children: [
       {
         path: "",
         name: "home",
-        component: () => import("./features/aucations/pages/HomePage.vue"),
+        component: HomePage,
       },
       {
         path: "aucations/:aucationId",
         name: "aucation-detail",
-        component: () => import("./features/aucations/pages/DetailPage.vue"),
+        component: DetailPage,
       },
       {
         path: "users",
         name: "users",
-        component: () => import("./features/users/pages/UsersPage.vue"),
+        component: UsersPage,
       },
       {
         path: "profile",
         name: "profile",
-        component: () => import("./features/users/pages/ProfilePage.vue"),
+        component: ProfilePage,
       },
     ],
   },
   {
     path: "/:pathMatch(.*)*",
     name: "not-found",
-    component: () => import("./features/common/pages/NotFoundPage.vue"),
+    component: NotFoundPage,
   },
 ];
 
